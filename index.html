@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="color-scheme" content="dark"/>
+<title>JevQuant Console</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<style>
+:root{--bg:#071018;--panel:#0b1622;--panel2:#0f1c2a;--line:#203246;--text:#e7eef7;--muted:#8293a8;--blue:#6ba6ff;--violet:#9677ff;--green:#38d996;--red:#ff6577;--amber:#ffbe63;--cyan:#5ce0e6}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(1200px 700px at 65% -10%,rgba(80,82,210,.22),transparent 55%),var(--bg);color:var(--text);font:13px Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}.shell{display:grid;grid-template-columns:238px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);padding:18px 13px;background:rgba(5,12,19,.96)}.brand{display:flex;gap:10px;align-items:center;padding:4px 8px 16px}.logo{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--violet));font-weight:900}.brand b{font-size:16px}.brand small{display:block;color:var(--muted);margin-top:2px}.demo{margin:0 8px 15px;border:1px solid rgba(56,217,150,.35);background:rgba(56,217,150,.08);color:var(--green);padding:9px;border-radius:9px;text-align:center;font-weight:900;letter-spacing:.07em}.nav button{width:100%;display:flex;align-items:center;gap:9px;border:0;background:transparent;color:#98aabd;padding:10px 11px;margin:2px 0;border-radius:9px;cursor:pointer;text-align:left}.nav button.active,.nav button:hover{color:#fff;background:linear-gradient(90deg,rgba(107,166,255,.14),rgba(150,119,255,.07))}.dot{width:7px;height:7px;border-radius:50%;background:#385068}.nav button.active .dot{background:var(--blue);box-shadow:0 0 10px var(--blue)}.sidefoot{position:absolute;left:20px;right:20px;bottom:18px;color:var(--muted);font-size:10px;line-height:1.6}.main{min-width:0}.top{height:68px;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid var(--line);background:rgba(7,16,24,.83);backdrop-filter:blur(16px)}.top h1{font-size:16px;margin:0}.tiny{font-size:10px;color:var(--muted)}.right{display:flex;align-items:center;gap:8px}.pill,.btn{border:1px solid var(--line);background:#0b1723;color:#bdcbd9;padding:7px 10px;border-radius:8px}.pill{border-radius:999px}.btn{cursor:pointer}.btn:hover{border-color:#395876;color:white}.primary{background:linear-gradient(135deg,#315f9a,#5947aa);border-color:#657acc;color:#fff}.danger{border-color:rgba(255,101,119,.42);background:rgba(255,101,119,.1);color:#ffd8dd}.content{padding:20px 22px 45px;max-width:1680px;margin:auto}.page{display:none}.page.active{display:block}.title{display:flex;justify-content:space-between;align-items:end;margin-bottom:15px}.title h2{margin:0 0 4px;font-size:21px}.sub{color:var(--muted)}.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(15,28,42,.9),rgba(8,18,28,.9));border-radius:13px;padding:14px;box-shadow:0 14px 40px rgba(0,0,0,.13)}.grid6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:11px}.grid2{display:grid;grid-template-columns:1.45fr 1fr;gap:12px;margin-top:12px}.grid22{display:grid;grid-template-columns:1fr 1fr;gap:12px}.label{color:var(--muted);font-size:10px}.val{font-size:19px;font-weight:800;margin-top:7px}.good{color:var(--green)}.bad{color:var(--red)}.warn{color:var(--amber)}.blue{color:var(--blue)}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}.tag{font-size:10px;color:var(--muted);padding:4px 7px;border:1px solid var(--line);border-radius:6px}.notice{border:1px solid rgba(255,190,99,.25);background:rgba(255,190,99,.07);color:#e9c991;padding:10px 12px;border-radius:9px;margin-bottom:12px}.error{border-color:rgba(255,101,119,.3);background:rgba(255,101,119,.08);color:#ffc5cc}.table{width:100%;border-collapse:collapse}.table th{font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;text-align:left;padding:8px 7px;border-bottom:1px solid var(--line)}.table td{padding:9px 7px;border-bottom:1px solid rgba(32,50,70,.6);vertical-align:top}.table tr:hover td{background:rgba(107,166,255,.035)}.num{font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.chart{height:285px}.bar{height:7px;border-radius:999px;background:#16283a;overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--violet))}.kv{display:grid;grid-template-columns:180px 1fr;gap:7px 14px}.kv div:nth-child(odd){color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.agent{min-height:145px}.status{display:inline-flex;padding:4px 7px;border-radius:99px;font-size:9px;font-weight:900;border:1px solid rgba(56,217,150,.25);color:var(--green);background:rgba(56,217,150,.08)}.field{margin-bottom:12px}.field label{display:block;color:#9fb0c2;font-size:10px;margin-bottom:6px}.input{width:100%;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:#07121c;color:#e9f0f7;outline:none}.input:focus{border-color:#5577a8}.row{display:flex;gap:8px;align-items:center}.stack{display:grid;gap:12px}.hidden{display:none!important}.logs{height:420px;overflow:auto;background:#06101a;border:1px solid var(--line);border-radius:9px;padding:10px;font:11px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}.empty{color:var(--muted);padding:28px;text-align:center}.trace{border-left:2px solid #24405e;margin-left:7px;padding-left:16px}.trace>div{margin:0 0 12px}.split{display:grid;grid-template-columns:1fr 1fr;gap:9px}.lang{min-width:92px}.modalMask{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:grid;place-items:center;padding:20px}.modal{max-width:620px;width:100%;background:#0b1622;border:1px solid #29415c;border-radius:14px;padding:18px}.modal h3{margin:0 0 7px}.monoBox{background:#06101a;border:1px solid var(--line);border-radius:8px;padding:9px;color:#adbed0}
+@media(max-width:1150px){.grid6{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:820px){.shell{grid-template-columns:1fr}.side{display:none}.grid6{grid-template-columns:repeat(2,1fr)}.grid2,.grid22{grid-template-columns:1fr}.content{padding:14px}.top{padding:0 14px}.top .pill:nth-child(2){display:none}.cards{grid-template-columns:1fr}.kv{grid-template-columns:120px 1fr}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+ <div class="brand"><div class="logo">JQ</div><div><b>JevQuant</b><small>Agent Trading Swarm</small></div></div>
+ <div class="demo">● SIMULATION ONLY</div>
+ <nav class="nav" id="nav"></nav>
+ <div class="sidefoot">OKX Demo · Jev · Volcengine Ark<br><span id="engineMini">Engine: not configured</span></div>
+</aside>
+<main class="main">
+<header class="top"><div><h1 id="topTitle">JevQuant Console</h1><div class="tiny" id="subtitle">Real data only · no mock market/account data</div></div><div class="right"><span class="pill" id="engineStatus">● Engine offline</span><span class="pill" id="modePill">—</span><button class="btn danger" id="shadowBtn">SHADOW</button><button class="btn lang" id="langBtn">中文 / EN</button></div></header>
+<div class="content" id="content"></div>
+</main>
+</div>
+
+<div class="modalMask hidden" id="engineModal"><div class="modal">
+ <h3 id="engineTitle">Connect Trading Engine</h3>
+ <div class="sub" id="engineDesc">Enter the HTTPS base URL of the always-on JevQuant Engine.</div>
+ <div style="height:12px"></div>
+ <input class="input num" id="engineInput" placeholder="https://engine.example.com"/>
+ <div class="row" style="margin-top:12px;justify-content:flex-end"><button class="btn" id="engineCancel">Cancel</button><button class="btn primary" id="engineSave">Save & connect</button></div>
+</div></div>
+
+<script>
+(function(){
+'use strict';
+var S={page:'dashboard',lang:localStorage.getItem('jq.lang')||'zh',base:(localStorage.getItem('jq.engine')||'').replace(/\/$/,''),
+ data:{},charts:{},timers:[]};
+var T={
+ zh:{dashboard:'总览',okx:'OKX 模拟盘',swarm:'机器人群',jev:'Jev 决策中心',risk:'风控中心',orders:'订单与持仓',logs:'日志与异常',settings:'配置中心',
+ real:'仅显示真实 Engine / OKX Demo 数据，不生成模拟行情或资产。',engine:'交易引擎',offline:'未连接',online:'已连接',save:'保存',test:'测试连接',refresh:'刷新',
+ equity:'Demo 总权益',available:'可用余额',upl:'未实现 PnL',exposure:'当前敞口',riskState:'风险状态',mode:'运行模式',
+ market:'OKX 实时市场',performance:'真实权益曲线',decision:'Jev 最新决策',agents:'Agent 状态',noData:'暂无真实数据',
+ configure:'配置 Trading Engine',engineHelp:'输入 24×7 常驻 JevQuant Engine 的 HTTPS 基础地址。站点只保存地址到当前浏览器；OKX/Jev/Ark 密钥全部保存在 Engine 服务端。',
+ okxCfg:'OKX 模拟盘 API',arkCfg:'火山方舟 Ark',jevCfg:'TypeSafe Jev',saved:'已提交到 Engine；服务端只返回脱敏状态。',failed:'操作失败',
+ account:'账户',positions:'持仓',pending:'挂单',fills:'成交',history:'历史订单',instruments:'交易对规格',logsTitle:'系统日志',incidents:'异常事件',
+ stop:'切到 SHADOW',loading:'读取中…',connected:'已连接',notConfigured:'未配置',run:'运行',errors:'错误',latency:'延迟',cycles:'循环',reason:'原因',trace:'Trace'},
+ en:{dashboard:'Overview',okx:'OKX Demo',swarm:'Agent Swarm',jev:'Jev Decisions',risk:'Risk Center',orders:'Orders & Positions',logs:'Logs & Incidents',settings:'Settings',
+ real:'Real Engine / OKX Demo data only. No mock market, balances or PnL.',engine:'Trading Engine',offline:'Offline',online:'Connected',save:'Save',test:'Test',refresh:'Refresh',
+ equity:'Demo Equity',available:'Available',upl:'Unrealized PnL',exposure:'Exposure',riskState:'Risk State',mode:'Run Mode',
+ market:'OKX Live Market',performance:'Persisted Equity Curve',decision:'Latest Jev Decision',agents:'Agent Status',noData:'No real data',
+ configure:'Configure Trading Engine',engineHelp:'Enter the HTTPS base URL of the always-on JevQuant Engine. Only the URL is stored in this browser; OKX/Jev/Ark secrets stay on the Engine.',
+ okxCfg:'OKX Demo API',arkCfg:'Volcengine Ark',jevCfg:'TypeSafe Jev',saved:'Submitted to Engine. Secrets are never returned to the browser.',failed:'Operation failed',
+ account:'Account',positions:'Positions',pending:'Open Orders',fills:'Fills',history:'Order History',instruments:'Instrument Specs',logsTitle:'System Logs',incidents:'Incidents',
+ stop:'Switch to SHADOW',loading:'Loading…',connected:'Connected',notConfigured:'Not configured',run:'Running',errors:'Errors',latency:'Latency',cycles:'Cycles',reason:'Reason',trace:'Trace'}
+};
+function t(k){return (T[S.lang]&&T[S.lang][k])||k}
+var pages=['dashboard','okx','swarm','jev','risk','orders','logs','settings'];
+var nav=document.getElementById('nav');
+function esc(v){return String(v==null?'—':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function n(v,d){var x=Number(v);return Number.isFinite(x)?x.toLocaleString(undefined,{minimumFractionDigits:d||0,maximumFractionDigits:d==null?2:d}):'—'}
+function usd(v){var x=Number(v);return Number.isFinite(x)?'$'+x.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):'—'}
+function cls(v){var x=Number(v);return x>0?'good':x<0?'bad':''}
+function apiUrl(path){if(!S.base) throw new Error('ENGINE_NOT_CONFIGURED');return S.base+path}
+async function get(path){var r=await fetch(apiUrl(path),{cache:'no-store'});if(!r.ok)throw new Error(path+' HTTP '+r.status);return r.json()}
+async function send(path,body,method){var r=await fetch(apiUrl(path),{method:method||'POST',headers:{'Content-Type':'application/json'},body:method==='DELETE'?undefined:JSON.stringify(body||{})});var x={};try{x=await r.json()}catch(e){}if(!r.ok)throw new Error(x.detail||x.error||('HTTP '+r.status));return x}
+function notice(text,bad){return '<div class="notice'+(bad?' error':'')+'">'+esc(text)+'</div>'}
+function card(title,body,tag){return '<div class="card"><div class="head"><b>'+esc(title)+'</b>'+(tag?'<span class="tag">'+esc(tag)+'</span>':'')+'</div>'+body+'</div>'}
+function stat(label,value,sub,klass){return '<div class="card"><div class="label">'+esc(label)+'</div><div class="val '+(klass||'')+'">'+esc(value)+'</div><div class="tiny" style="margin-top:6px">'+esc(sub||'')+'</div></div>'}
+function table(headers,rows){return '<div style="overflow:auto"><table class="table"><thead><tr>'+headers.map(function(h){return'<th>'+esc(h)+'</th>'}).join('')+'</tr></thead><tbody>'+rows.join('')+'</tbody></table></div>'}
+function objRows(o,limit){if(!o)return'<div class="empty">'+t('noData')+'</div>';var a=Object.entries(o).slice(0,limit||50);return '<div class="kv">'+a.map(function(x){return'<div>'+esc(x[0])+'</div><div class="num">'+esc(typeof x[1]==='object'?JSON.stringify(x[1]):x[1])+'</div>'}).join('')+'</div>'}
+function renderNav(){nav.innerHTML=pages.map(function(p){return'<button data-p="'+p+'" class="'+(S.page===p?'active':'')+'"><span class="dot"></span>'+t(p)+'</button>'}).join('');Array.from(nav.querySelectorAll('button')).forEach(function(b){b.onclick=function(){S.page=b.dataset.p;renderNav();render()}})}
+function setEngineStatus(ok,mode){var e=document.getElementById('engineStatus');e.textContent='● '+(ok?t('online'):t('offline'));e.className='pill '+(ok?'good':'warn');document.getElementById('modePill').textContent=mode||'—';document.getElementById('engineMini').textContent='Engine: '+(S.base||t('notConfigured'))}
+async function pull(){
+ if(!S.base){setEngineStatus(false,'—');return}
+ try{
+  var res=await Promise.allSettled([get('/api/health'),get('/api/market'),get('/api/account'),get('/api/swarm'),get('/api/performance'),get('/api/decisions'),get('/api/risk'),get('/api/orders'),get('/api/logs')]);
+  var keys=['health','market','account','swarm','performance','decisions','risk','orders','logs'];
+  res.forEach(function(r,i){if(r.status==='fulfilled')S.data[keys[i]]=r.value;else S.data[keys[i]]={ok:false,error:r.reason&&r.reason.message||String(r.reason)}});
+  setEngineStatus(!!(S.data.health&&S.data.health.api&&S.data.health.api.ok),S.data.swarm&&S.data.swarm.orchestrator&&S.data.swarm.orchestrator.mode);
+ }catch(e){setEngineStatus(false,'—')}
+ render();
+}
+function shellTitle(){document.getElementById('topTitle').textContent='JevQuant · '+t(S.page);document.getElementById('subtitle').textContent=t('real');document.getElementById('shadowBtn').textContent=t('stop')}
+function dashboard(){
+ var a=S.data.account||{},p=S.data.performance||{},r=S.data.risk||{},m=S.data.market||{},sw=S.data.swarm||{},d=(S.data.decisions&&S.data.decisions.decisions||[])[0];
+ var balances=a.balances||[];var avail=balances[0]&&balances[0].avail;
+ var html=notice(t('real'),false);
+ html+='<div class="grid6">'+stat(t('equity'),a.ok?usd(a.equity):'—',a.ok?'OKX Demo':'—')+stat(t('available'),a.ok?usd(avail):'—',balances[0]&&balances[0].ccy||'')+stat(t('upl'),p.ok?usd(p.pnl&&p.pnl.unrealized):'—','',cls(p.pnl&&p.pnl.unrealized))+stat(t('exposure'),a.ok?n(a.exposure_pct,2)+'%':'—','')+stat(t('riskState'),r.state||'—',r.reason||'',r.state==='NORMAL'?'good':r.state?'warn':'')+stat(t('mode'),sw.orchestrator&&sw.orchestrator.mode||'—',sw.orchestrator&&sw.orchestrator.running?t('run'):t('offline'))+'</div>';
+ html+='<div class="grid2">'+card(t('performance'),'<div id="equityChart" class="chart"></div>',p.activity?String(p.activity.equity_points||0)+' pts':'')+card(t('decision'),d?'<div style="font-size:18px;font-weight:800" class="blue">'+esc(d.regime)+'</div><div class="tiny">'+esc(d.instrument)+' · '+esc(d.route)+'</div><div style="margin-top:14px">Evidence <b style="float:right">'+n(d.evidence_sufficient,2)+'</b><div class="bar"><i style="width:'+Math.max(0,Math.min(100,Number(d.evidence_sufficient)*100))+'%"></i></div>Signal conflict <b style="float:right">'+n(d.signal_conflict,2)+'</b><div class="bar"><i style="width:'+Math.max(0,Math.min(100,Number(d.signal_conflict)*100))+'%"></i></div>No trade <b style="float:right">'+n(d.no_trade_probability,2)+'</b><div class="bar"><i style="width:'+Math.max(0,Math.min(100,Number(d.no_trade_probability)*100))+'%"></i></div></div>':'<div class="empty">'+t('noData')+'</div>')+'</div>';
+ var ins=m.instruments||[];
+ html+='<div style="margin-top:12px">'+card(t('market'),table(['Symbol','Last','Bid / Ask','Spread','24H','High / Low','Tick / Lot'],ins.map(function(i){return'<tr><td><b>'+esc(i.instrument)+'</b><div class="tiny">'+esc((i.base_ccy||'')+'/'+(i.quote_ccy||''))+'</div></td><td class="num">'+esc(i.last)+'</td><td class="num">'+esc(i.bid)+' / '+esc(i.ask)+'</td><td class="num">'+n(i.spread_bps,3)+' bps</td><td class="num '+cls(i.change_24h_pct)+'">'+n(i.change_24h_pct,2)+'%</td><td class="num">'+esc(i.high_24h)+' / '+esc(i.low_24h)+'</td><td class="num">'+esc(i.tick_sz)+' / '+esc(i.lot_sz)+'</td></tr>'})))+'</div>';
+ return html
+}
+function renderEquity(){
+ var p=S.data.performance||{},arr=p.equity_series||[],el=document.getElementById('equityChart');if(!el)return;
+ if(!arr.length){el.innerHTML='<div class="empty">'+t('noData')+'</div>';return}
+ var c=S.charts.eq;if(!c){c=echarts.init(el);S.charts.eq=c}
+ var x=arr.map(function(q){return new Date(q.ts).toLocaleTimeString([], {hour12:false})}),y=arr.map(function(q){return Number(q.equity)});
+ c.setOption({animation:false,tooltip:{trigger:'axis',transitionDuration:0,confine:true},grid:{left:70,right:20,top:15,bottom:48},dataZoom:[{type:'inside',startValue:Math.max(0,x.length-180),endValue:x.length-1},{type:'slider',height:15,bottom:3,startValue:Math.max(0,x.length-180),endValue:x.length-1}],xAxis:{type:'category',data:x,boundaryGap:false,axisLabel:{color:'#66778b',hideOverlap:true},axisLine:{lineStyle:{color:'#203246'}}},yAxis:{type:'value',scale:true,axisLabel:{color:'#66778b'},splitLine:{lineStyle:{color:'#16232f'}}},series:[{name:'Equity',type:'line',showSymbol:false,data:y,smooth:.12,lineStyle:{color:'#6ba6ff',width:2},areaStyle:{color:'rgba(107,166,255,.10)'}}]},{notMerge:true,lazyUpdate:true});
+}
+function okxPage(){
+ if(!S.base)return engineMissing();
+ return '<div class="stack"><div class="card"><div class="head"><b>'+t('okx')+'</b><button class="btn" id="loadOkx">'+t('refresh')+'</button></div><div id="okxBody"><div class="empty">'+t('loading')+'</div></div></div></div>'
+}
+async function loadOkx(){
+ var el=document.getElementById('okxBody');if(!el)return;
+ try{var x=await get('/api/okx/demo');S.data.okx=x;var ac=x.account_config||{},bal=x.balance||{},pos=x.positions||[],pend=x.pending_orders||[],fills=x.fills||[],hist=x.order_history||[],arc=x.archived_orders||[],fh=x.fills_history||[],ins=x.instruments||[];
+ el.innerHTML='<div class="grid22">'+card(t('account'),objRows(ac,30))+card('Balance',objRows(bal,40))+'</div><div class="grid22" style="margin-top:12px">'+card(t('positions'),table(['instId','posSide','pos','avgPx','upl'],pos.map(function(o){return'<tr><td>'+esc(o.instId)+'</td><td>'+esc(o.posSide)+'</td><td class="num">'+esc(o.pos)+'</td><td class="num">'+esc(o.avgPx)+'</td><td class="num '+cls(o.upl)+'">'+esc(o.upl)+'</td></tr>'})))+card(t('pending'),table(['instId','side','ordType','px','sz','state'],pend.map(function(o){return'<tr><td>'+esc(o.instId)+'</td><td>'+esc(o.side)+'</td><td>'+esc(o.ordType)+'</td><td class="num">'+esc(o.px)+'</td><td class="num">'+esc(o.sz)+'</td><td>'+esc(o.state)+'</td></tr>'})))+'</div><div style="margin-top:12px">'+card(t('instruments'),table(['instId','state','tickSz','lotSz','minSz','last','bid/ask'],ins.map(function(q){var sp=q.spec||{},tk=q.ticker||{};return'<tr><td><b>'+esc(q.instrument)+'</b></td><td>'+esc(sp.state)+'</td><td class="num">'+esc(sp.tickSz)+'</td><td class="num">'+esc(sp.lotSz)+'</td><td class="num">'+esc(sp.minSz)+'</td><td class="num">'+esc(tk.last)+'</td><td class="num">'+esc(tk.bidPx)+' / '+esc(tk.askPx)+'</td></tr>'})))+'</div><div style="margin-top:12px">'+card(t('fills')+' / '+t('history'),table(['instId','side','px','fillSz','state/order'],fills.concat(fh).slice(0,80).map(function(o){return'<tr><td>'+esc(o.instId)+'</td><td>'+esc(o.side)+'</td><td class="num">'+esc(o.fillPx||o.px)+'</td><td class="num">'+esc(o.fillSz||o.sz)+'</td><td>'+esc(o.state||o.ordId)+'</td></tr>'})))+'</div><div style="margin-top:12px">'+card(t('history'),table(['instId','side','ordType','px','sz','state'],hist.concat(arc).slice(0,100).map(function(o){return'<tr><td>'+esc(o.instId)+'</td><td>'+esc(o.side)+'</td><td>'+esc(o.ordType)+'</td><td class="num">'+esc(o.px)+'</td><td class="num">'+esc(o.sz)+'</td><td>'+esc(o.state)+'</td></tr>'})))+'</div>';
+ }catch(e){el.innerHTML=notice(e.message,true)}
+}
+function swarmPage(){var s=S.data.swarm||{},o=s.orchestrator||{},feed=s.feed||{};var items=Object.entries(feed);return '<div class="grid6">'+stat(t('cycles'),o.cycles||0,'')+stat(t('errors'),o.errors||0,'')+stat('Consecutive',o.consecutive_errors||0,'')+stat('Uptime',n(o.uptime_s,0)+'s','')+stat('Executor',o.executor_ready?'READY':'OFF','',o.executor_ready?'good':'warn')+stat(t('mode'),o.mode||'—','desired '+(o.desired_mode||'—'))+'</div><div style="margin-top:12px">'+card(t('agents'),items.length?table(['Feed','State','Messages','Errors','Reconnects','Age'],items.map(function(x){var q=x[1]||{};return'<tr><td><b>'+esc(x[0])+'</b></td><td>'+esc(q.state)+'</td><td class="num">'+esc(q.messages)+'</td><td class="num">'+esc(q.errors)+'</td><td class="num">'+esc(q.reconnects)+'</td><td class="num">'+esc(q.age_ms)+'ms</td></tr>'})):'<div class="empty">'+t('noData')+'</div>')+'</div>'}
+function jevPage(){var ds=S.data.decisions&&S.data.decisions.decisions||[];return card(t('jev'),ds.length?table(['Time','Symbol','Regime','Evidence','Conflict','No trade','Quality','Route','Latency'],ds.slice(0,100).map(function(d){return'<tr><td>'+esc(d.created_at)+'</td><td>'+esc(d.instrument)+'</td><td class="blue">'+esc(d.regime)+'</td><td class="num">'+n(d.evidence_sufficient,2)+'</td><td class="num">'+n(d.signal_conflict,2)+'</td><td class="num">'+n(d.no_trade_probability,2)+'</td><td>'+esc(d.proposal_quality)+'/5</td><td>'+esc(d.route)+'</td><td class="num">'+esc(d.latency_ms)+'ms</td></tr>'})):'<div class="empty">'+t('noData')+'</div>')}
+function riskPage(){var r=S.data.risk||{};var gates=r.gates||{};return '<div class="grid2">'+card(t('riskState'),'<div style="font-size:26px;font-weight:900" class="'+(r.state==='NORMAL'?'good':'warn')+'">'+esc(r.state||'—')+'</div><div class="sub">'+esc(r.reason||'')+'</div><div style="margin-top:16px">'+objRows(r.limits||{},40)+'</div>')+card('Gates',Object.keys(gates).length?'<div class="kv">'+Object.entries(gates).map(function(x){return'<div>'+esc(x[0])+'</div><div class="'+(x[1]?'good':'bad')+'">'+(x[1]?'PASS':'FAIL')+'</div>'}).join('')+'</div>':'<div class="empty">'+t('noData')+'</div>')+'</div>'}
+function ordersPage(){var a=S.data.account||{},os=S.data.orders&&S.data.orders.orders||[];return '<div class="grid22">'+card(t('positions'),table(['Symbol','Side','Pos','AvgPx','UPL','Notional'],(a.positions||[]).map(function(p){return'<tr><td>'+esc(p.instrument)+'</td><td>'+esc(p.side)+'</td><td class="num">'+esc(p.pos)+'</td><td class="num">'+esc(p.avg_px)+'</td><td class="num '+cls(p.upl)+'">'+esc(p.upl)+'</td><td class="num">'+esc(p.notional_usd)+'</td></tr>'})))+card('Orders',table(['clOrdId','Symbol','Side','Type','Px','Sz','State','Trace'],os.slice(0,100).map(function(o){return'<tr><td class="num">'+esc(o.cl_ord_id)+'</td><td>'+esc(o.instrument)+'</td><td>'+esc(o.side)+'</td><td>'+esc(o.type)+'</td><td class="num">'+esc(o.px)+'</td><td class="num">'+esc(o.sz)+'</td><td>'+esc(o.state)+'</td><td class="num">'+esc(o.trace_id)+'</td></tr>'})))+'</div>'}
+function logsPage(){var l=S.data.logs||{},ev=l.events||[],inc=l.incidents||[];return '<div class="grid2">'+card(t('logsTitle'),'<div class="logs">'+(ev.length?ev.slice(0,300).map(function(x){return'['+esc(x.at)+'] '+esc(x.level)+' '+esc(x.source)+' '+esc(x.message)+(x.trace_id?' trace='+esc(x.trace_id):'')}).join('\n') : t('noData'))+'</div>')+card(t('incidents'),inc.length?table(['Time','Severity','Kind','Symbol'],inc.slice(0,100).map(function(x){return'<tr><td>'+esc(x.at)+'</td><td class="'+(x.severity==='critical'?'bad':'warn')+'">'+esc(x.severity)+'</td><td>'+esc(x.kind)+'</td><td>'+esc(x.instrument)+'</td></tr>')):'<div class="empty">'+t('noData')+'</div>')+'</div>'}
+function settingsPage(){
+ return '<div class="stack">'+card(t('configure'),'<div class="sub">'+esc(t('engineHelp'))+'</div><div class="row" style="margin-top:12px"><input id="baseInput" class="input num" value="'+esc(S.base)+'" placeholder="https://engine.example.com"><button class="btn primary" id="baseSave">'+t('save')+'</button></div>')+
+ card(t('okxCfg'),fields([['okx_api_key','API Key','password'],['okx_secret_key','Secret Key','password'],['okx_passphrase','Passphrase','password']])+'<button class="btn primary saveProvider" data-kind="okx">'+t('save')+'</button>')+
+ card(t('arkCfg'),fields([['ark_api_key','API Key','password'],['ark_model','Model / Endpoint ID','text'],['ark_base_url','Base URL','text']])+'<button class="btn primary saveProvider" data-kind="ark">'+t('save')+'</button>')+
+ card(t('jevCfg'),fields([['typesafe_api_key','API Key','password'],['typesafe_base_url','Base URL','text']])+'<button class="btn primary saveProvider" data-kind="jev">'+t('save')+'</button>')+
+ '<div id="settingsMsg"></div></div>'
+}
+function fields(arr){return arr.map(function(x){return'<div class="field"><label>'+esc(x[1])+'</label><input class="input providerField" data-key="'+x[0]+'" type="'+x[2]+'" autocomplete="off"></div>'}).join('')}
+function engineMissing(){return notice(t('engineHelp'),true)+'<button class="btn primary" id="openEngine">'+t('configure')+'</button>'}
+function render(){
+ shellTitle();renderNav();var c=document.getElementById('content');
+ if(!S.base && S.page!=='settings'){c.innerHTML='<div class="title"><div><h2>'+esc(t(S.page))+'</h2><div class="sub">'+esc(t('real'))+'</div></div></div>'+engineMissing();bind();return}
+ var body='';if(S.page==='dashboard')body=dashboard();else if(S.page==='okx')body=okxPage();else if(S.page==='swarm')body=swarmPage();else if(S.page==='jev')body=jevPage();else if(S.page==='risk')body=riskPage();else if(S.page==='orders')body=ordersPage();else if(S.page==='logs')body=logsPage();else body=settingsPage();
+ c.innerHTML='<div class="title"><div><h2>'+esc(t(S.page))+'</h2><div class="sub">'+esc(t('real'))+'</div></div><button class="btn" id="refreshBtn">'+t('refresh')+'</button></div>'+body;bind();if(S.page==='dashboard')renderEquity();if(S.page==='okx')loadOkx();
+}
+function bind(){
+ var r=document.getElementById('refreshBtn');if(r)r.onclick=pull;var o=document.getElementById('openEngine');if(o)o.onclick=openEngine;var l=document.getElementById('loadOkx');if(l)l.onclick=loadOkx;
+ var b=document.getElementById('baseSave');if(b)b.onclick=function(){var v=document.getElementById('baseInput').value.trim().replace(/\/$/,'');localStorage.setItem('jq.engine',v);S.base=v;setEngineStatus(false,'—');pull()};
+ Array.from(document.querySelectorAll('.saveProvider')).forEach(function(btn){btn.onclick=async function(){var kind=btn.dataset.kind,sec={},vals={};Array.from(btn.parentElement.querySelectorAll('.providerField')).forEach(function(i){if(!i.value)return;var k=i.dataset.key;if(k.indexOf('api_key')>=0||k.indexOf('secret_key')>=0||k==='okx_passphrase')sec[k]=i.value;else vals[k]=i.value});var msg=document.getElementById('settingsMsg');try{if(Object.keys(sec).length)await send('/api/settings/secrets',sec);if(Object.keys(vals).length){var mapped={};Object.keys(vals).forEach(function(k){mapped[k.replace('typesafe_','typesafe_').replace('ark_','ark_')]=vals[k]});await send('/api/settings/values',mapped)}msg.innerHTML=notice(t('saved'),false);Array.from(btn.parentElement.querySelectorAll('.providerField')).forEach(function(i){if(i.type==='password')i.value=''})}catch(e){msg.innerHTML=notice(t('failed')+': '+e.message,true)}}});
+}
+function openEngine(){document.getElementById('engineInput').value=S.base;document.getElementById('engineModal').classList.remove('hidden')}
+document.getElementById('engineCancel').onclick=function(){document.getElementById('engineModal').classList.add('hidden')};
+document.getElementById('engineSave').onclick=function(){var v=document.getElementById('engineInput').value.trim().replace(/\/$/,'');if(v)localStorage.setItem('jq.engine',v);else localStorage.removeItem('jq.engine');S.base=v;document.getElementById('engineModal').classList.add('hidden');pull()};
+document.getElementById('langBtn').onclick=function(){S.lang=S.lang==='zh'?'en':'zh';localStorage.setItem('jq.lang',S.lang);render()};
+document.getElementById('shadowBtn').onclick=async function(){if(!S.base)return openEngine();try{await send('/api/swarm/mode',{mode:'SHADOW'});await pull()}catch(e){alert(e.message)}};
+window.addEventListener('resize',function(){Object.values(S.charts).forEach(function(c){try{c.resize()}catch(e){}})});
+renderNav();render();pull();S.timers.push(setInterval(pull,5000));
+})();
+</script>
+</body>
+</html>
